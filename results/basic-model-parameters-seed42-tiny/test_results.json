@@ -1,0 +1,12 @@
+{
+    "epoch": 9.396755422324105,
+    "test_human_pearson": 0.5289615830010077,
+    "test_human_pearson_median": 0.5266336611613721,
+    "test_loss": 0.9223831295967102,
+    "test_mean_pearson": 0.5796460323079127,
+    "test_mouse_pearson": 0.6303304816148176,
+    "test_mouse_pearson_median": 0.6370528581901107,
+    "test_runtime": 340.1501,
+    "test_samples_per_second": 6.506,
+    "test_steps_per_second": 1.085
+}

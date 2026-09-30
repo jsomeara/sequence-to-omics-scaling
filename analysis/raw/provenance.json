@@ -1,0 +1,7 @@
+{
+  "transformer_usage_source": "Transformer_Usage_Analysis.ipynb",
+  "notebook_sha256": "eb030b5842e365deaf02ae321b5506a6f6db374e349801392e224dc3826907d9",
+  "wandb_export": "Full scan_history numeric scalar rows, explicit 20-run allowlist",
+  "published_metrics": "Archived post summaries/histories; verified against fresh W&B exports",
+  "window_counts": "Reconstructed, not original subset manifests"
+}

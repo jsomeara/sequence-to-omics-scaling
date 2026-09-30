@@ -1,0 +1,105 @@
+{
+  "project": "stefanomeara-n-a/enformer-baseline",
+  "runs": [
+    {
+      "id": "j7xs77kg",
+      "name": "enformer-human-mouse-baseline-8layer",
+      "group": "depth"
+    },
+    {
+      "id": "jq1irl9z",
+      "name": "enformer-human-mouse-baseline-1layer",
+      "group": "depth"
+    },
+    {
+      "id": "9wukqjhh",
+      "name": "enformer-human-mouse-baseline-0layer",
+      "group": "depth"
+    },
+    {
+      "id": "hxczizba",
+      "name": "enformer-human-mouse-baseline-1layer-rope",
+      "group": "depth"
+    },
+    {
+      "id": "1hz7mp5u",
+      "name": "enformer-human-mouse-baseline-8layer-rope",
+      "group": "depth"
+    },
+    {
+      "id": "17hlpkdw",
+      "name": "basic-model-data100pct",
+      "group": "dataset"
+    },
+    {
+      "id": "y52pxvn0",
+      "name": "basic-model-data1pct",
+      "group": "dataset"
+    },
+    {
+      "id": "4tbdsxok",
+      "name": "basic-model-data10pct",
+      "group": "dataset"
+    },
+    {
+      "id": "5w5tipgq",
+      "name": "basic-model-data3pct",
+      "group": "dataset"
+    },
+    {
+      "id": "vgyqwduw",
+      "name": "basic-model-data30pct",
+      "group": "dataset"
+    },
+    {
+      "name": "basic-model-parameters-seed42-full",
+      "group": "parameters",
+      "id": "cupsbvah"
+    },
+    {
+      "name": "basic-model-parameters-seed42-large",
+      "group": "parameters",
+      "id": "if0g8mac"
+    },
+    {
+      "name": "basic-model-parameters-seed42-medium",
+      "group": "parameters",
+      "id": "hwu6c4g7"
+    },
+    {
+      "name": "basic-model-parameters-seed42-small",
+      "group": "parameters",
+      "id": "insaklgq"
+    },
+    {
+      "name": "basic-model-parameters-seed42-tiny",
+      "group": "parameters",
+      "id": "u1lemsqu"
+    },
+    {
+      "name": "basic-model-trainseed42-trackseed42-tracks100pct",
+      "group": "tracks",
+      "id": "3yr0jmjm"
+    },
+    {
+      "name": "basic-model-trainseed42-trackseed42-tracks10pct",
+      "group": "tracks",
+      "id": "ottlk9rb"
+    },
+    {
+      "name": "basic-model-trainseed42-trackseed42-tracks1pct",
+      "group": "tracks",
+      "id": "rblbjaqd"
+    },
+    {
+      "name": "basic-model-trainseed42-trackseed42-tracks30pct",
+      "group": "tracks",
+      "id": "hgvncv32"
+    },
+    {
+      "name": "basic-model-trainseed42-trackseed42-tracks3pct",
+      "group": "tracks",
+      "id": "h1a601pc"
+    }
+  ]
+}

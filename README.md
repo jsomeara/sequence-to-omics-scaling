@@ -136,3 +136,14 @@ For SSH sessions, start `tmux new -s scaling`, run the experiment inside it, the
 The server did not contain usable Git history. This snapshot was reconstructed from locally saved pre-conservation backups and server benchmark artifacts. The original custom model comes from the parameter-scaling backup; it matches `modeling_custom_old.py` except for its standalone smoke-test entry point. The benchmark script matches the executed RAM-cache version byte-for-byte. Training/data wrappers and the lockfile come from the pre-conservation backup. No server source files or running jobs were modified to create this publication.
 
 `SNAPSHOT_SHA256SUMS` records the copied source and result contents. The original MIT license and copyright notice are retained in `LICENSE`. Dataset access and redistribution terms are separate from the source-code license.
+
+## Reproduce the blog's figures and tables
+
+All analysis code and the analyzed runs' scalar data are in [`analysis/`](analysis/README.md).
+They generate the scaling-law fits, extrapolation plots, Markdown tables,
+matched-track comparisons, transformer-depth learning curves (including RoPE at
+6,000 steps), and individual transformer-layer cosine plots without training or
+an API key. See the [analysis instructions](analysis/README.md) for the one-command
+generation workflow and source provenance. The completed
+[transformer usage notebook](Transformer_Usage_Analysis.ipynb) also contains its
+original measured results and inference code.

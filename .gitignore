@@ -21,3 +21,6 @@ wandb/
 *.tar
 *.gz
 checkpoint-*/
+
+analysis/generated/
+!analysis/raw/wandb/

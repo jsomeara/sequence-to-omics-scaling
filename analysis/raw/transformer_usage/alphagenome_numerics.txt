@@ -1,0 +1,1 @@
+Official weights and architecture; T4 emulates BF16 dot with BF16-rounded operands and FP32 accumulation. Chunked local encoder with 2048-bp overlap; full 1-Mb transformer context. Not bit-identical to native H100 kernels.

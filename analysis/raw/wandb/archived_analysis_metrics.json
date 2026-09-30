@@ -1,0 +1,1003 @@
+[
+  {
+    "id": "j7xs77kg",
+    "name": "enformer-human-mouse-baseline-8layer",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/j7xs77kg",
+    "state": "killed",
+    "config": {
+      "seed": 42,
+      "depth": 8,
+      "data_seed": 42,
+      "max_steps": 150000,
+      "eval_steps": 500,
+      "model_type": "enformer",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "model/num_parameters": 203700524,
+      "gradient_accumulation_steps": 1,
+      "per_device_train_batch_size": 8
+    },
+    "summary": {
+      "eval/human_pearson": 0.551344229042664,
+      "eval/human_pearson_median": 0.5514384876571324,
+      "eval/mean_pearson": 0.6016216974525381,
+      "eval/mouse_pearson": 0.6518991658624123,
+      "eval/mouse_pearson_median": 0.66545374609607,
+      "train/global_step": 6177
+    },
+    "validation_history": [
+      {
+        "eval/mouse_pearson": 0.46291358117929726,
+        "eval/human_pearson": 0.3658728585004637,
+        "_step": 500,
+        "train/global_step": 500,
+        "eval/mean_pearson": 0.4143932198398805
+      },
+      {
+        "eval/mouse_pearson": 0.5263144660027776,
+        "eval/human_pearson": 0.41852348278044943,
+        "_step": 1001,
+        "train/global_step": 1000,
+        "eval/mean_pearson": 0.4724189743916135
+      },
+      {
+        "eval/mouse_pearson": 0.567913607613657,
+        "eval/human_pearson": 0.4562719229498037,
+        "_step": 1502,
+        "train/global_step": 1500,
+        "eval/mean_pearson": 0.5120927652817303
+      },
+      {
+        "eval/mouse_pearson": 0.5902920019350122,
+        "eval/human_pearson": 0.48273129331260906,
+        "_step": 2003,
+        "train/global_step": 2000,
+        "eval/mean_pearson": 0.5365116476238107
+      },
+      {
+        "eval/mouse_pearson": 0.6068836557317325,
+        "eval/human_pearson": 0.5149059123075482,
+        "_step": 2504,
+        "train/global_step": 2500,
+        "eval/mean_pearson": 0.5608947840196403
+      },
+      {
+        "eval/mouse_pearson": 0.6255151556184079,
+        "eval/human_pearson": 0.525022180369649,
+        "_step": 3005,
+        "train/global_step": 3000,
+        "eval/mean_pearson": 0.5752686679940284
+      },
+      {
+        "eval/mouse_pearson": 0.6251020515887826,
+        "eval/human_pearson": 0.5210962225343282,
+        "_step": 3506,
+        "train/global_step": 3500,
+        "eval/mean_pearson": 0.5730991370615555
+      },
+      {
+        "eval/mouse_pearson": 0.6345970778420826,
+        "eval/human_pearson": 0.5295136963639117,
+        "_step": 4007,
+        "train/global_step": 4000,
+        "eval/mean_pearson": 0.5820553871029972
+      },
+      {
+        "eval/mouse_pearson": 0.6241508250932363,
+        "eval/human_pearson": 0.521009860419666,
+        "_step": 4508,
+        "train/global_step": 4500,
+        "eval/mean_pearson": 0.5725803427564511
+      },
+      {
+        "eval/mouse_pearson": 0.6361002972073857,
+        "eval/human_pearson": 0.5277094585452531,
+        "_step": 5009,
+        "train/global_step": 5000,
+        "eval/mean_pearson": 0.5819048778763194
+      },
+      {
+        "eval/mouse_pearson": 0.6436519255216863,
+        "eval/human_pearson": 0.5412030825151588,
+        "_step": 5510,
+        "train/global_step": 5500,
+        "eval/mean_pearson": 0.5924275040184226
+      },
+      {
+        "eval/mouse_pearson": 0.6518991658624123,
+        "eval/human_pearson": 0.551344229042664,
+        "_step": 6011,
+        "train/global_step": 6000,
+        "eval/mean_pearson": 0.6016216974525381
+      }
+    ]
+  },
+  {
+    "id": "jq1irl9z",
+    "name": "enformer-human-mouse-baseline-1layer",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/jq1irl9z",
+    "state": "killed",
+    "config": {
+      "seed": 42,
+      "depth": 1,
+      "data_seed": 42,
+      "max_steps": 150000,
+      "eval_steps": 500,
+      "model_type": "enformer",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "model/num_parameters": 92818732,
+      "gradient_accumulation_steps": 1,
+      "per_device_train_batch_size": 8
+    },
+    "summary": {
+      "eval/human_pearson": 0.5878908916767568,
+      "eval/human_pearson_median": 0.5959078059464519,
+      "eval/mean_pearson": 0.636796526250635,
+      "eval/mouse_pearson": 0.6857021608245131,
+      "eval/mouse_pearson_median": 0.6983984739848387,
+      "train/global_step": 14036
+    },
+    "validation_history": [
+      {
+        "train/global_step": 500,
+        "eval/mean_pearson": 0.3950371947184695,
+        "_step": 500,
+        "eval/human_pearson": 0.33550461204613885,
+        "eval/mouse_pearson": 0.4545697773908001
+      },
+      {
+        "train/global_step": 1000,
+        "eval/mean_pearson": 0.48279876154949947,
+        "_step": 1001,
+        "eval/human_pearson": 0.4304856815575886,
+        "eval/mouse_pearson": 0.5351118415414103
+      },
+      {
+        "train/global_step": 1500,
+        "eval/mean_pearson": 0.5293403515785182,
+        "_step": 1502,
+        "eval/human_pearson": 0.4779832732411087,
+        "eval/mouse_pearson": 0.5806974299159278
+      },
+      {
+        "train/global_step": 2000,
+        "eval/mean_pearson": 0.5540859798687974,
+        "_step": 2003,
+        "eval/human_pearson": 0.508945888331756,
+        "eval/mouse_pearson": 0.5992260714058387
+      },
+      {
+        "train/global_step": 2500,
+        "eval/mean_pearson": 0.5642945105169433,
+        "_step": 2504,
+        "eval/human_pearson": 0.5161361013345518,
+        "eval/mouse_pearson": 0.6124529196993349
+      },
+      {
+        "train/global_step": 3000,
+        "eval/mean_pearson": 0.5697407867862136,
+        "_step": 3005,
+        "eval/human_pearson": 0.521528342931014,
+        "eval/mouse_pearson": 0.6179532306414133
+      },
+      {
+        "train/global_step": 3500,
+        "eval/mean_pearson": 0.5742445934279968,
+        "_step": 3506,
+        "eval/human_pearson": 0.5224378903981162,
+        "eval/mouse_pearson": 0.6260512964578775
+      },
+      {
+        "train/global_step": 4000,
+        "eval/mean_pearson": 0.5906910411411315,
+        "_step": 4007,
+        "eval/human_pearson": 0.5432555594360183,
+        "eval/mouse_pearson": 0.6381265228462447
+      },
+      {
+        "train/global_step": 4500,
+        "eval/mean_pearson": 0.5852908419962636,
+        "_step": 4508,
+        "eval/human_pearson": 0.535582792629825,
+        "eval/mouse_pearson": 0.6349988913627022
+      },
+      {
+        "train/global_step": 5000,
+        "eval/mean_pearson": 0.5910810356275917,
+        "_step": 5009,
+        "eval/human_pearson": 0.5399709348146812,
+        "eval/mouse_pearson": 0.6421911364405024
+      },
+      {
+        "train/global_step": 5500,
+        "eval/mean_pearson": 0.5972748993536912,
+        "_step": 5510,
+        "eval/human_pearson": 0.5464908958722694,
+        "eval/mouse_pearson": 0.648058902835113
+      },
+      {
+        "train/global_step": 6000,
+        "eval/mean_pearson": 0.6097280268557785,
+        "_step": 6011,
+        "eval/human_pearson": 0.5606046797425868,
+        "eval/mouse_pearson": 0.6588513739689704
+      },
+      {
+        "train/global_step": 6500,
+        "eval/mean_pearson": 0.613513726691548,
+        "_step": 6512,
+        "eval/human_pearson": 0.5623775596859198,
+        "eval/mouse_pearson": 0.6646498936971762
+      },
+      {
+        "train/global_step": 7000,
+        "eval/mean_pearson": 0.6098266377973671,
+        "_step": 7013,
+        "eval/human_pearson": 0.5612291597088603,
+        "eval/mouse_pearson": 0.658424115885874
+      },
+      {
+        "train/global_step": 7500,
+        "eval/mean_pearson": 0.6162189598523953,
+        "_step": 7514,
+        "eval/human_pearson": 0.5671189302568085,
+        "eval/mouse_pearson": 0.6653189894479821
+      },
+      {
+        "train/global_step": 8000,
+        "eval/mean_pearson": 0.6193025671351093,
+        "_step": 8015,
+        "eval/human_pearson": 0.5694281269867827,
+        "eval/mouse_pearson": 0.6691770072834359
+      },
+      {
+        "train/global_step": 8500,
+        "eval/mean_pearson": 0.6204653978696508,
+        "_step": 8516,
+        "eval/human_pearson": 0.5695934344844821,
+        "eval/mouse_pearson": 0.6713373612548197
+      },
+      {
+        "train/global_step": 9000,
+        "eval/mean_pearson": 0.6240847297563218,
+        "_step": 9017,
+        "eval/human_pearson": 0.5745458816130724,
+        "eval/mouse_pearson": 0.6736235778995712
+      },
+      {
+        "train/global_step": 9500,
+        "eval/mean_pearson": 0.6233955749353062,
+        "_step": 9518,
+        "eval/human_pearson": 0.5716846424194397,
+        "eval/mouse_pearson": 0.6751065074511726
+      },
+      {
+        "train/global_step": 10000,
+        "eval/mean_pearson": 0.6277505734906109,
+        "_step": 10019,
+        "eval/human_pearson": 0.5784328440382289,
+        "eval/mouse_pearson": 0.6770683029429929
+      },
+      {
+        "train/global_step": 10500,
+        "eval/mean_pearson": 0.6251058935642062,
+        "_step": 10520,
+        "eval/human_pearson": 0.5762224810056294,
+        "eval/mouse_pearson": 0.6739893061227828
+      },
+      {
+        "train/global_step": 11000,
+        "eval/mean_pearson": 0.6321625100860105,
+        "_step": 11021,
+        "eval/human_pearson": 0.5821531425110241,
+        "eval/mouse_pearson": 0.682171877660997
+      },
+      {
+        "train/global_step": 11500,
+        "eval/mean_pearson": 0.6264379879006168,
+        "_step": 11522,
+        "eval/human_pearson": 0.5773698155593878,
+        "eval/mouse_pearson": 0.6755061602418457
+      },
+      {
+        "train/global_step": 12000,
+        "eval/mean_pearson": 0.6267680208653068,
+        "_step": 12023,
+        "eval/human_pearson": 0.576955561983935,
+        "eval/mouse_pearson": 0.6765804797466787
+      },
+      {
+        "train/global_step": 12500,
+        "eval/mean_pearson": 0.63433482719917,
+        "_step": 12524,
+        "eval/human_pearson": 0.5838215224852679,
+        "eval/mouse_pearson": 0.684848131913072
+      },
+      {
+        "train/global_step": 13000,
+        "eval/mean_pearson": 0.6333366616537498,
+        "_step": 13025,
+        "eval/human_pearson": 0.5822724302475103,
+        "eval/mouse_pearson": 0.6844008930599893
+      },
+      {
+        "train/global_step": 13500,
+        "eval/mean_pearson": 0.633705510388066,
+        "_step": 13526,
+        "eval/human_pearson": 0.5851013363081907,
+        "eval/mouse_pearson": 0.6823096844679412
+      },
+      {
+        "train/global_step": 14000,
+        "eval/mean_pearson": 0.636796526250635,
+        "_step": 14027,
+        "eval/human_pearson": 0.5878908916767568,
+        "eval/mouse_pearson": 0.6857021608245131
+      }
+    ]
+  },
+  {
+    "id": "9wukqjhh",
+    "name": "enformer-human-mouse-baseline-0layer",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/9wukqjhh",
+    "state": "killed",
+    "config": {
+      "seed": 42,
+      "depth": 0,
+      "data_seed": 42,
+      "max_steps": 150000,
+      "eval_steps": 500,
+      "model_type": "enformer",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "model/num_parameters": 76978476,
+      "gradient_accumulation_steps": 1,
+      "per_device_train_batch_size": 8
+    },
+    "summary": {
+      "eval/human_pearson": 0.4995232754591743,
+      "eval/human_pearson_median": 0.4795643364768759,
+      "eval/mean_pearson": 0.5523452888305359,
+      "eval/mouse_pearson": 0.6051673022018975,
+      "eval/mouse_pearson_median": 0.6131181510552906,
+      "train/global_step": 6010
+    },
+    "validation_history": [
+      {
+        "_step": 500,
+        "eval/mouse_pearson": 0.45551993337354857,
+        "train/global_step": 500,
+        "eval/human_pearson": 0.34568371300044215,
+        "eval/mean_pearson": 0.40060182318699533
+      },
+      {
+        "_step": 1001,
+        "eval/mouse_pearson": 0.5103979063056718,
+        "train/global_step": 1000,
+        "eval/human_pearson": 0.3988337875609565,
+        "eval/mean_pearson": 0.45461584693331414
+      },
+      {
+        "_step": 1502,
+        "eval/mouse_pearson": 0.5418253034237075,
+        "train/global_step": 1500,
+        "eval/human_pearson": 0.43618797407618903,
+        "eval/mean_pearson": 0.48900663874994826
+      },
+      {
+        "_step": 2003,
+        "eval/mouse_pearson": 0.5648885071657427,
+        "train/global_step": 2000,
+        "eval/human_pearson": 0.45852469820778163,
+        "eval/mean_pearson": 0.5117066026867622
+      },
+      {
+        "_step": 2504,
+        "eval/mouse_pearson": 0.578078195442976,
+        "train/global_step": 2500,
+        "eval/human_pearson": 0.47158302830751964,
+        "eval/mean_pearson": 0.5248306118752478
+      },
+      {
+        "_step": 3005,
+        "eval/mouse_pearson": 0.5863746062973132,
+        "train/global_step": 3000,
+        "eval/human_pearson": 0.47667013317629464,
+        "eval/mean_pearson": 0.5315223697368039
+      },
+      {
+        "_step": 3506,
+        "eval/mouse_pearson": 0.587540683954676,
+        "train/global_step": 3500,
+        "eval/human_pearson": 0.48078289783527284,
+        "eval/mean_pearson": 0.5341617908949744
+      },
+      {
+        "_step": 4007,
+        "eval/mouse_pearson": 0.59101735041172,
+        "train/global_step": 4000,
+        "eval/human_pearson": 0.4837926345901257,
+        "eval/mean_pearson": 0.5374049925009229
+      },
+      {
+        "_step": 4508,
+        "eval/mouse_pearson": 0.5903161777457624,
+        "train/global_step": 4500,
+        "eval/human_pearson": 0.48477471890166784,
+        "eval/mean_pearson": 0.5375454483237151
+      },
+      {
+        "_step": 5009,
+        "eval/mouse_pearson": 0.6010531973331914,
+        "train/global_step": 5000,
+        "eval/human_pearson": 0.4922048055189296,
+        "eval/mean_pearson": 0.5466290014260605
+      },
+      {
+        "_step": 5510,
+        "eval/mouse_pearson": 0.6036643245856802,
+        "train/global_step": 5500,
+        "eval/human_pearson": 0.49769492076377886,
+        "eval/mean_pearson": 0.5506796226747295
+      },
+      {
+        "_step": 6011,
+        "eval/mouse_pearson": 0.6051673022018975,
+        "train/global_step": 6000,
+        "eval/human_pearson": 0.4995232754591743,
+        "eval/mean_pearson": 0.5523452888305359
+      }
+    ]
+  },
+  {
+    "id": "hxczizba",
+    "name": "enformer-human-mouse-baseline-1layer-rope",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/hxczizba",
+    "state": "killed",
+    "config": {
+      "seed": 42,
+      "depth": 1,
+      "data_seed": 42,
+      "max_steps": 150000,
+      "eval_steps": 500,
+      "model_type": "enformer",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "model/num_parameters": 92719404,
+      "gradient_accumulation_steps": 1,
+      "per_device_train_batch_size": 8
+    },
+    "summary": {
+      "eval/human_pearson": 0.5778531678899578,
+      "eval/human_pearson_median": 0.5833987723492303,
+      "eval/mean_pearson": 0.6297700925090977,
+      "eval/mouse_pearson": 0.6816870171282374,
+      "eval/mouse_pearson_median": 0.6928843667693098,
+      "train/global_step": 13139
+    },
+    "validation_history": [
+      {
+        "eval/human_pearson": 0.4982416517968975,
+        "eval/mouse_pearson": 0.5972019146942067,
+        "_step": 500,
+        "train/global_step": 1500,
+        "eval/mean_pearson": 0.5477217832455521
+      },
+      {
+        "eval/human_pearson": 0.5146350442765968,
+        "eval/mouse_pearson": 0.6107980356799699,
+        "_step": 1001,
+        "train/global_step": 2000,
+        "eval/mean_pearson": 0.5627165399782834
+      },
+      {
+        "eval/human_pearson": 0.5277503037661633,
+        "eval/mouse_pearson": 0.624167152522836,
+        "_step": 1502,
+        "train/global_step": 2500,
+        "eval/mean_pearson": 0.5759587281444997
+      },
+      {
+        "eval/human_pearson": 0.537000563658127,
+        "eval/mouse_pearson": 0.634462096562623,
+        "_step": 2003,
+        "train/global_step": 3000,
+        "eval/mean_pearson": 0.585731330110375
+      },
+      {
+        "eval/human_pearson": 0.5291251097673405,
+        "eval/mouse_pearson": 0.6298114997599008,
+        "_step": 2504,
+        "train/global_step": 3500,
+        "eval/mean_pearson": 0.5794683047636207
+      },
+      {
+        "eval/human_pearson": 0.5432529184318184,
+        "eval/mouse_pearson": 0.639536372947864,
+        "_step": 3005,
+        "train/global_step": 4000,
+        "eval/mean_pearson": 0.5913946456898412
+      },
+      {
+        "eval/human_pearson": 0.5390286649296,
+        "eval/mouse_pearson": 0.6342206513775895,
+        "_step": 3506,
+        "train/global_step": 4500,
+        "eval/mean_pearson": 0.5866246581535948
+      },
+      {
+        "eval/human_pearson": 0.5495112419060246,
+        "eval/mouse_pearson": 0.6443533259875999,
+        "_step": 4007,
+        "train/global_step": 5000,
+        "eval/mean_pearson": 0.5969322839468123
+      },
+      {
+        "eval/human_pearson": 0.5523232024067116,
+        "eval/mouse_pearson": 0.6514895946774979,
+        "_step": 4508,
+        "train/global_step": 5500,
+        "eval/mean_pearson": 0.6019063985421047
+      },
+      {
+        "eval/human_pearson": 0.5605932814216086,
+        "eval/mouse_pearson": 0.6574506046905233,
+        "_step": 5009,
+        "train/global_step": 6000,
+        "eval/mean_pearson": 0.6090219430560659
+      },
+      {
+        "eval/human_pearson": 0.5602081545302044,
+        "eval/mouse_pearson": 0.6619565653198383,
+        "_step": 5510,
+        "train/global_step": 6500,
+        "eval/mean_pearson": 0.6110823599250214
+      },
+      {
+        "eval/human_pearson": 0.5655873408810824,
+        "eval/mouse_pearson": 0.6592225655204008,
+        "_step": 6011,
+        "train/global_step": 7000,
+        "eval/mean_pearson": 0.6124049532007416
+      },
+      {
+        "eval/human_pearson": 0.5699910974124659,
+        "eval/mouse_pearson": 0.667468209589291,
+        "_step": 6512,
+        "train/global_step": 7500,
+        "eval/mean_pearson": 0.6187296535008784
+      },
+      {
+        "eval/human_pearson": 0.5711227212015989,
+        "eval/mouse_pearson": 0.6708421024460521,
+        "_step": 7013,
+        "train/global_step": 8000,
+        "eval/mean_pearson": 0.6209824118238255
+      },
+      {
+        "eval/human_pearson": 0.5677520312089284,
+        "eval/mouse_pearson": 0.6721381196669192,
+        "_step": 7514,
+        "train/global_step": 8500,
+        "eval/mean_pearson": 0.6199450754379238
+      },
+      {
+        "eval/human_pearson": 0.575484846519117,
+        "eval/mouse_pearson": 0.6749265211500607,
+        "_step": 8015,
+        "train/global_step": 9000,
+        "eval/mean_pearson": 0.6252056838345889
+      },
+      {
+        "eval/human_pearson": 0.5757184455415012,
+        "eval/mouse_pearson": 0.6767879935711648,
+        "_step": 8516,
+        "train/global_step": 9500,
+        "eval/mean_pearson": 0.6262532195563331
+      },
+      {
+        "eval/human_pearson": 0.5774156509260047,
+        "eval/mouse_pearson": 0.6792220256112683,
+        "_step": 9017,
+        "train/global_step": 10000,
+        "eval/mean_pearson": 0.6283188382686364
+      },
+      {
+        "eval/human_pearson": 0.5684943201375776,
+        "eval/mouse_pearson": 0.6716186208986717,
+        "_step": 9518,
+        "train/global_step": 10500,
+        "eval/mean_pearson": 0.6200564705181246
+      },
+      {
+        "eval/human_pearson": 0.5815570900796815,
+        "eval/mouse_pearson": 0.6831539944402283,
+        "_step": 10019,
+        "train/global_step": 11000,
+        "eval/mean_pearson": 0.6323555422599549
+      },
+      {
+        "eval/human_pearson": 0.5829258502452181,
+        "eval/mouse_pearson": 0.6815832596164866,
+        "_step": 10520,
+        "train/global_step": 11500,
+        "eval/mean_pearson": 0.6322545549308524
+      },
+      {
+        "eval/human_pearson": 0.5787011987689947,
+        "eval/mouse_pearson": 0.6797200319527752,
+        "_step": 11021,
+        "train/global_step": 12000,
+        "eval/mean_pearson": 0.629210615360885
+      },
+      {
+        "eval/human_pearson": 0.5852861874871119,
+        "eval/mouse_pearson": 0.6868420324305192,
+        "_step": 11522,
+        "train/global_step": 12500,
+        "eval/mean_pearson": 0.6360641099588156
+      },
+      {
+        "eval/human_pearson": 0.5778531678899578,
+        "eval/mouse_pearson": 0.6816870171282374,
+        "_step": 12023,
+        "train/global_step": 13000,
+        "eval/mean_pearson": 0.6297700925090977
+      }
+    ]
+  },
+  {
+    "id": "1hz7mp5u",
+    "name": "enformer-human-mouse-baseline-8layer-rope",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/1hz7mp5u",
+    "state": "killed",
+    "config": {
+      "seed": 42,
+      "depth": 8,
+      "data_seed": 42,
+      "max_steps": 150000,
+      "eval_steps": 500,
+      "model_type": "enformer",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "model/num_parameters": 202905900,
+      "gradient_accumulation_steps": 1,
+      "per_device_train_batch_size": 8
+    },
+    "summary": {
+      "eval/human_pearson": 0.584142051609881,
+      "eval/human_pearson_median": 0.5929844820793655,
+      "eval/mean_pearson": 0.6362530705231995,
+      "eval/mouse_pearson": 0.688364089436518,
+      "eval/mouse_pearson_median": 0.6976688463973056,
+      "train/global_step": 11007
+    },
+    "validation_history": [
+      {
+        "train/global_step": 500,
+        "_step": 500,
+        "eval/mean_pearson": 0.42318651728208234,
+        "eval/human_pearson": 0.3780748043601239,
+        "eval/mouse_pearson": 0.4682982302040407
+      },
+      {
+        "train/global_step": 1000,
+        "_step": 1001,
+        "eval/mean_pearson": 0.47962825500724066,
+        "eval/human_pearson": 0.42729172711989205,
+        "eval/mouse_pearson": 0.5319647828945893
+      },
+      {
+        "train/global_step": 1500,
+        "_step": 1502,
+        "eval/mean_pearson": 0.5332969648207981,
+        "eval/human_pearson": 0.48397437314072145,
+        "eval/mouse_pearson": 0.5826195565008747
+      },
+      {
+        "train/global_step": 2000,
+        "_step": 2003,
+        "eval/mean_pearson": 0.5474387942580015,
+        "eval/human_pearson": 0.5045849106152629,
+        "eval/mouse_pearson": 0.59029267790074
+      },
+      {
+        "train/global_step": 2500,
+        "_step": 2504,
+        "eval/mean_pearson": 0.5727252421286027,
+        "eval/human_pearson": 0.5255635501442377,
+        "eval/mouse_pearson": 0.6198869341129676
+      },
+      {
+        "train/global_step": 3000,
+        "_step": 3005,
+        "eval/mean_pearson": 0.5775643635435173,
+        "eval/human_pearson": 0.5288854206039787,
+        "eval/mouse_pearson": 0.6262433064830557
+      },
+      {
+        "train/global_step": 3500,
+        "_step": 3506,
+        "eval/mean_pearson": 0.5757882110133341,
+        "eval/human_pearson": 0.5253643864987911,
+        "eval/mouse_pearson": 0.626212035527877
+      },
+      {
+        "train/global_step": 4000,
+        "_step": 4007,
+        "eval/mean_pearson": 0.5923362936024559,
+        "eval/human_pearson": 0.5435847241880484,
+        "eval/mouse_pearson": 0.6410878630168635
+      },
+      {
+        "train/global_step": 4500,
+        "_step": 4508,
+        "eval/mean_pearson": 0.5712222595260534,
+        "eval/human_pearson": 0.5229532024512438,
+        "eval/mouse_pearson": 0.6194913166008632
+      },
+      {
+        "train/global_step": 5000,
+        "_step": 5009,
+        "eval/mean_pearson": 0.5981350769410647,
+        "eval/human_pearson": 0.5466735785883393,
+        "eval/mouse_pearson": 0.6495965752937902
+      },
+      {
+        "train/global_step": 5500,
+        "_step": 5510,
+        "eval/mean_pearson": 0.6043734629424948,
+        "eval/human_pearson": 0.5552157978613286,
+        "eval/mouse_pearson": 0.6535311280236611
+      },
+      {
+        "train/global_step": 6000,
+        "_step": 6011,
+        "eval/mean_pearson": 0.6094481650580601,
+        "eval/human_pearson": 0.5603754704923164,
+        "eval/mouse_pearson": 0.6585208596238038
+      },
+      {
+        "train/global_step": 6500,
+        "_step": 6512,
+        "eval/mean_pearson": 0.6129176984540883,
+        "eval/human_pearson": 0.5631315524895127,
+        "eval/mouse_pearson": 0.6627038444186637
+      },
+      {
+        "train/global_step": 7000,
+        "_step": 7013,
+        "eval/mean_pearson": 0.6137462817418058,
+        "eval/human_pearson": 0.563738243447398,
+        "eval/mouse_pearson": 0.6637543200362135
+      },
+      {
+        "train/global_step": 7500,
+        "_step": 7514,
+        "eval/mean_pearson": 0.6218678413790719,
+        "eval/human_pearson": 0.5709327446624337,
+        "eval/mouse_pearson": 0.67280293809571
+      },
+      {
+        "train/global_step": 8000,
+        "_step": 8015,
+        "eval/mean_pearson": 0.6202067272540017,
+        "eval/human_pearson": 0.5695976246827862,
+        "eval/mouse_pearson": 0.6708158298252173
+      },
+      {
+        "train/global_step": 8500,
+        "_step": 8516,
+        "eval/mean_pearson": 0.6258456068819511,
+        "eval/human_pearson": 0.5741776889493254,
+        "eval/mouse_pearson": 0.6775135248145769
+      },
+      {
+        "train/global_step": 9000,
+        "_step": 9017,
+        "eval/mean_pearson": 0.6283468336827782,
+        "eval/human_pearson": 0.5777962616360979,
+        "eval/mouse_pearson": 0.6788974057294587
+      },
+      {
+        "train/global_step": 9500,
+        "_step": 9518,
+        "eval/mean_pearson": 0.629632497864931,
+        "eval/human_pearson": 0.5776917019177998,
+        "eval/mouse_pearson": 0.6815732938120622
+      },
+      {
+        "train/global_step": 10000,
+        "_step": 10019,
+        "eval/mean_pearson": 0.6338216286292149,
+        "eval/human_pearson": 0.5837219425212161,
+        "eval/mouse_pearson": 0.6839213147372135
+      },
+      {
+        "train/global_step": 10500,
+        "_step": 10520,
+        "eval/mean_pearson": 0.6344107391993565,
+        "eval/human_pearson": 0.5826331252587404,
+        "eval/mouse_pearson": 0.6861883531399727
+      },
+      {
+        "train/global_step": 11000,
+        "_step": 11021,
+        "eval/mean_pearson": 0.6362530705231995,
+        "eval/human_pearson": 0.584142051609881,
+        "eval/mouse_pearson": 0.688364089436518
+      }
+    ]
+  },
+  {
+    "id": "17hlpkdw",
+    "name": "basic-model-data100pct",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/17hlpkdw",
+    "state": "finished",
+    "config": {
+      "seed": 42,
+      "data_seed": 42,
+      "max_steps": 10000,
+      "eval_steps": 2000,
+      "model_type": "custom_seq2func",
+      "save_steps": 2000,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "gradient_accumulation_steps": 4,
+      "per_device_train_batch_size": 2
+    },
+    "summary": {
+      "eval/human_pearson": 0.5936396294202647,
+      "eval/human_pearson_median": 0.6026273585295786,
+      "eval/mean_pearson": 0.6442523733328342,
+      "eval/mouse_pearson": 0.6948651172454038,
+      "eval/mouse_pearson_median": 0.7038290423013581,
+      "test/human_pearson": 0.5936396294202647,
+      "test/human_pearson_median": 0.6026273585295786,
+      "test/mean_pearson": 0.6442523733328342,
+      "test/mouse_pearson": 0.6948651172454038,
+      "test/mouse_pearson_median": 0.7038290423013581,
+      "train/global_step": 10000
+    }
+  },
+  {
+    "id": "y52pxvn0",
+    "name": "basic-model-data1pct",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/y52pxvn0",
+    "state": "finished",
+    "config": {
+      "seed": 42,
+      "data_seed": 42,
+      "max_steps": 10000,
+      "eval_steps": 500,
+      "model_type": "custom_seq2func",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "gradient_accumulation_steps": 4,
+      "per_device_train_batch_size": 2
+    },
+    "summary": {
+      "eval/human_pearson": 0.4870021732449712,
+      "eval/human_pearson_median": 0.4601519848324585,
+      "eval/mean_pearson": 0.5242641510680174,
+      "eval/mouse_pearson": 0.5615261288910636,
+      "eval/mouse_pearson_median": 0.5860284319375977,
+      "test/human_pearson": 0.48845343533222424,
+      "test/human_pearson_median": 0.461373284284065,
+      "test/mean_pearson": 0.5275801625861982,
+      "test/mouse_pearson": 0.5667068898401723,
+      "test/mouse_pearson_median": 0.5882300333157726,
+      "train/global_step": 10000
+    }
+  },
+  {
+    "id": "4tbdsxok",
+    "name": "basic-model-data10pct",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/4tbdsxok",
+    "state": "finished",
+    "config": {
+      "seed": 42,
+      "data_seed": 42,
+      "max_steps": 10000,
+      "eval_steps": 500,
+      "model_type": "custom_seq2func",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "gradient_accumulation_steps": 4,
+      "per_device_train_batch_size": 2
+    },
+    "summary": {
+      "eval/human_pearson": 0.5676360037876051,
+      "eval/human_pearson_median": 0.5634515283637881,
+      "eval/mean_pearson": 0.6130925460669471,
+      "eval/mouse_pearson": 0.658549088346289,
+      "eval/mouse_pearson_median": 0.6659194472495494,
+      "test/human_pearson": 0.5676360037876051,
+      "test/human_pearson_median": 0.5634515283637881,
+      "test/mean_pearson": 0.6130925460669471,
+      "test/mouse_pearson": 0.658549088346289,
+      "test/mouse_pearson_median": 0.6659194472495494,
+      "train/global_step": 10000
+    }
+  },
+  {
+    "id": "5w5tipgq",
+    "name": "basic-model-data3pct",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/5w5tipgq",
+    "state": "finished",
+    "config": {
+      "seed": 42,
+      "data_seed": 42,
+      "max_steps": 10000,
+      "eval_steps": 500,
+      "model_type": "custom_seq2func",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "gradient_accumulation_steps": 4,
+      "per_device_train_batch_size": 2
+    },
+    "summary": {
+      "eval/human_pearson": 0.5238009678829083,
+      "eval/human_pearson_median": 0.5033326532665732,
+      "eval/mean_pearson": 0.5600213329332075,
+      "eval/mouse_pearson": 0.5962416979835067,
+      "eval/mouse_pearson_median": 0.6157298232177417,
+      "test/human_pearson": 0.524497927140569,
+      "test/human_pearson_median": 0.5044947614778608,
+      "test/mean_pearson": 0.5609559425819968,
+      "test/mouse_pearson": 0.5974139580234247,
+      "test/mouse_pearson_median": 0.6154375753484721,
+      "train/global_step": 10000
+    }
+  },
+  {
+    "id": "vgyqwduw",
+    "name": "basic-model-data30pct",
+    "url": "https://wandb.ai/stefanomeara-n-a/enformer-baseline/runs/vgyqwduw",
+    "state": "finished",
+    "config": {
+      "seed": 42,
+      "data_seed": 42,
+      "max_steps": 10000,
+      "eval_steps": 500,
+      "model_type": "custom_seq2func",
+      "save_steps": 500,
+      "warmup_steps": 5000,
+      "learning_rate": 0.0005,
+      "lr_scheduler_type": "cosine",
+      "gradient_accumulation_steps": 4,
+      "per_device_train_batch_size": 2
+    },
+    "summary": {
+      "eval/human_pearson": 0.5881442756461893,
+      "eval/human_pearson_median": 0.5958542293790766,
+      "eval/mean_pearson": 0.6372621161711524,
+      "eval/mouse_pearson": 0.6863799566961154,
+      "eval/mouse_pearson_median": 0.6954544121675574,
+      "test/human_pearson": 0.5881442756461893,
+      "test/human_pearson_median": 0.5958542293790766,
+      "test/mean_pearson": 0.6372621161711524,
+      "test/mouse_pearson": 0.6863799566961154,
+      "test/mouse_pearson_median": 0.6954544121675574,
+      "train/global_step": 10000
+    }
+  }
+]

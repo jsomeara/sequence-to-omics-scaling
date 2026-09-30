@@ -1,0 +1,37 @@
+{
+  "source": "Reconstructed from current BED row counts excluding header and archived seed42 paired-dataset/subset algorithms; not original saved subset indices.",
+  "human_total": 34021,
+  "mouse_total": 29295,
+  "rows": [
+    {
+      "fraction": 0.01,
+      "paired_examples": 340,
+      "unique_human_windows": 340,
+      "unique_mouse_windows": 340
+    },
+    {
+      "fraction": 0.03,
+      "paired_examples": 1021,
+      "unique_human_windows": 1021,
+      "unique_mouse_windows": 1017
+    },
+    {
+      "fraction": 0.1,
+      "paired_examples": 3402,
+      "unique_human_windows": 3402,
+      "unique_mouse_windows": 3350
+    },
+    {
+      "fraction": 0.3,
+      "paired_examples": 10206,
+      "unique_human_windows": 10206,
+      "unique_mouse_windows": 9792
+    },
+    {
+      "fraction": 1,
+      "paired_examples": 34021,
+      "unique_human_windows": 34021,
+      "unique_mouse_windows": 29295
+    }
+  ]
+}

@@ -1,101 +1,160 @@
-# Sequence-to-omics scaling
+# Scaling Sequence-to-Omics Models
 
-Experiments on how sequence-to-function prediction changes with **training examples**, **supervised output tracks**, and **model width**. The default custom model jointly predicts human and mouse functional-genomics profiles from 131,072-base one-hot DNA windows, with 896 output bins and 5,313 human / 1,643 mouse tracks.
+Code and recorded results for experiments on how sequence-to-omics prediction scales with **training data, model size, supervised tracks, and transformer depth**. The experiments use human and mouse data from the Enformer/Basenji2 dataset.
 
-This is a reconstruction of the pre-conservation track-ablation benchmark state. The full custom model has **135,938,104 parameters and one transformer block**. It does not include the subsequent custom architecture, conservation inputs, or later recovery/continuation changes. Enformer remains an optional `--model enformer` alternative; custom is the default. Model configurations are local: no hosted EleutherAI configuration is fetched. The dataset downloader uses Hugging Face dataset hosting; training uses the Transformers library.
+The repository includes the measurements and code needed to regenerate the figures, tables, and equations. You can reproduce the analysis on a CPU without downloading the training dataset or model checkpoints.
 
-## Installation
+## Start here
 
-Use Linux, Python 3.10–3.12, `uv`, and CUDA-capable GPUs with a compatible NVIDIA driver. Run commands from the repository root:
+| Goal | Where to start |
+|---|---|
+| Generate the figures, tables, and equations | [Offline analysis](#reproduce-the-figures-and-tables) |
+| Inspect the analyzed training runs | [Run index](analysis/raw/wandb/README.md) and [run manifest](analysis/run_manifest.json) |
+| Inspect the focused-versus-full track benchmark | [Benchmark results](results/track-comparison-20260919T202732.863735Z/) |
+| Analyze individual transformer blocks | [Transformer usage notebook](Transformer_Usage_Analysis.ipynb) |
+| Train new models or repeat the sweeps | [Training](#train-the-models) |
+
+## Experiments
+
+| Experiment | What varies | What is included |
+|---|---|---|
+| Dataset scaling | 1%, 3%, 10%, 30%, and 100% of training examples | Test scores and complete scalar run histories |
+| Parameter scaling | Five model widths, from 4.5M to 135.9M parameters | Test scores, architecture metadata, and complete scalar histories |
+| Track scaling | 1%, 3%, 10%, 30%, and 100% of supervised tracks | Exact track selections, run histories, and a matched-track test benchmark |
+| Transformer depth | Zero, one, and eight blocks; original encoding and RoPE | Validation histories and comparisons at matched steps |
+| Transformer usage | Each block in official Enformer, Borzoi, and AlphaGenome models | Individual layer scores across eight genomic sequences and the executed notebook |
+
+The data and parameter experiments show diminishing gains across the tested scales. The track benchmark finds no consistent advantage for focused or full-track supervision. One transformer block reaches similar validation performance to eight blocks in the depth comparison.
+
+These are single-seed experiments. The scaling fits describe the recorded measurements; their asymptotes are extrapolations, not established performance ceilings. Transformer input-output cosine similarity measures representation changes, not whether a layer is necessary. [Analysis methods and provenance](analysis/README.md) explain the evaluations and their limits.
+
+## Reproduce the figures and tables
+
+Clone the repository and create a lightweight analysis environment:
 
 ```bash
 git clone https://github.com/jsomeara/sequence-to-omics-scaling.git
 cd sequence-to-omics-scaling
+
+uv venv .analysis-venv --python 3.11
+uv pip install --python .analysis-venv/bin/python -r analysis/requirements.txt
+.analysis-venv/bin/python analysis/generate.py
+```
+
+This generates the following in `analysis/generated/`:
+
+- Dataset and parameter scaling plots, including extrapolation, fitted equations, and fit coefficients.
+- Focused-versus-full track comparisons and differences.
+- Transformer-depth learning curves and tables, including RoPE at steps **6,000 and 11,000**.
+- Individual layer cosine plots and tables for Enformer, Borzoi, and AlphaGenome.
+- PNG/PDF/SVG figures and equation images, Markdown and rendered tables, and full-precision CSVs.
+
+No GPU, W&B account, API key, training dataset, or checkpoint is needed. Generated files are ignored by Git. Change the output directory or extrapolation range with:
+
+```bash
+.analysis-venv/bin/python analysis/generate.py \
+  --output-dir ./figures --extrapolation-factor 10
+```
+
+Both scaling axes use the same additive-offset power law, fitted by unweighted nonlinear least squares:
+
+$$\widehat{\bar r}(x)=r_\infty-Ax^{-\alpha}.$$
+
+For dataset scaling, $x$ is the training fraction. For parameter scaling, it is the parameter count in millions. See [the analysis README](analysis/README.md) for constraints, source files, and the optional W&B export command.
+
+## Recorded data
+
+Only the **20 training runs analyzed in the post** are exported: five each for dataset size, parameter size, track supervision, and transformer depth. Their unsampled numeric scalar histories contain 194,222 logged rows. No checkpoints, W&B artifacts, or training datasets are distributed.
+
+| Location | Contents |
+|---|---|
+| [`analysis/raw/wandb/`](analysis/raw/wandb/) | Per-run scalar histories, numeric summaries, relevant settings, and the archived measurements used in the post |
+| [`analysis/raw/transformer_usage/`](analysis/raw/transformer_usage/) | Per-layer/per-sequence cosine scores, sequence coordinates, source commits, environments, and AlphaGenome validation |
+| [`analysis/raw/window_counts.json`](analysis/raw/window_counts.json) | Reconstructed training-window counts; these are not original subset manifests |
+| [`results/`](results/) | Saved parameter/track test summaries, architecture metadata, track selections, benchmark results, and provenance |
+
+The figure generator reads these committed files directly. Dataset and parameter scores are training-pipeline test summaries; transformer-depth scores are validation metrics. The focused-versus-full comparison uses each species' native test set and evaluates both models on exactly the same selected tracks.
+
+## Transformer usage notebook
+
+[Open the notebook in Colab](https://colab.research.google.com/github/jsomeara/sequence-to-omics-scaling/blob/main/Transformer_Usage_Analysis.ipynb), or inspect its saved outputs in [GitHub](Transformer_Usage_Analysis.ipynb).
+
+The completed analysis measures the input-output cosine similarity of every full transformer block: **11 Enformer blocks, 8 Borzoi blocks, and 9 AlphaGenome blocks**, across eight shared hg38 chr22 genomic centers. The offline generator can recreate those plots from the saved measurements.
+
+Rerunning inference requires a GPU and model-weight downloads. AlphaGenome requires access to Google's gated weights; enter your Hugging Face token through the notebook's masked prompt. The notebook documents its T4 numerical adaptation and checks the tiled convolutional encoder before running the full-context transformer analysis.
+
+## Train the models
+
+### Install the training environment
+
+Training uses Linux, Python 3.10–3.12, `uv`, and CUDA-capable GPUs. From the repository root:
+
+```bash
 uv sync --locked
 uv run python -c 'import torch; print(torch.__version__, torch.cuda.is_available())'
 ```
 
-The preserved lockfile fixes Python package versions. Benchmark provenance records Torch 2.14.0+cu130, CUDA 13.0, NumPy 2.5.2 and an NVIDIA L40S. Matching seeds alone does not guarantee bitwise reproduction across hardware, software versions, or distributed batch layouts. If CUDA is unavailable, install the appropriate CUDA-enabled PyTorch build before training. Shell sweeps report to Weights & Biases: run `uv run wandb login`, or append `--report-to none` to disable it.
+The default **custom** model predicts 5,313 human tracks and 1,643 mouse tracks from 131,072-base one-hot DNA windows, producing 896 output bins. The full preset has **135,938,104 parameters and one transformer block**. Enformer is available through `--model enformer`. Model configurations are local; no hosted EleutherAI configuration is fetched.
 
-## Prepare the data
+The sweep scripts report to W&B. Run `uv run wandb login`, or append `--report-to none` to a sweep command to disable reporting. Training dependencies and analysis dependencies are separate so plotting does not require installing the training stack.
 
-Datasets and weights are deliberately excluded. The included downloader reconstructs the split training HDF5 files and optionally downloads genome FASTAs:
+### Prepare the dataset
 
 ```bash
 uv run python -m scripts.download_dataset \
   --output-dir ./DATASET --include-test --download-hg38 --download-mm10
 ```
 
-The default dataset ID is `yangyz1230/space`. Keep BED order, target order and genome assemblies unchanged. Required files are `human_{train,valid,test}.{h5,bed}`, the corresponding mouse files, and `genome/hg38.fa`, `genome/mm10.fa`. Track annotation files are downloaded too. FASTA indexes are created by the loader; keep the data directory writable.
+The downloader uses `yangyz1230/space` on Hugging Face. Required files are `human_{train,valid,test}.{h5,bed}`, the corresponding mouse files, and `genome/hg38.fa` / `genome/mm10.fa`. Preserve BED row order, target order, and genome assemblies. The data directory must be writable for FASTA indexes.
 
-Create the faster, uncompressed training layout used by the sweeps (requires additional disk space):
+The historical sweeps use uncompressed training HDF5 files for faster reads:
 
 ```bash
 uv run python -m scripts.repack_targets DATASET/human_train.h5 DATASET/human_train_fast.h5 --workers 4
 uv run python -m scripts.repack_targets DATASET/mouse_train.h5 DATASET/mouse_train_fast.h5 --workers 4
 ```
 
-Repacking changes storage layout, not target values. Original HDF5 files can instead be supplied directly through the training path flags, at a potential I/O cost.
+Repacking changes storage layout without changing target values. It requires additional disk space.
 
-## Configure the historical sweep scripts
+### Configure and run the sweeps
 
-The original launchers are preserved, including their site-specific constants. Before running, edit the following in each launcher you use:
+The launchers preserve their historical paths and default to four processes. Before running a launcher, edit its `DATA_DIR`, `NPROC_PER_NODE`, and `--num-gpus` in `COMMON_ARGS`. The two GPU-count settings must agree. Set `OUTPUT_ROOT` if you want a different output location.
 
-- `DATA_DIR`: absolute path to your prepared dataset directory.
-- `NPROC_PER_NODE` **and** `--num-gpus` in `COMMON_ARGS`: set both to your GPU count.
-- `OUTPUT_ROOT`: local experiment directory (default `./OUTPUTS`).
+| Launcher | Sweep | GPUs used for the archived results |
+|---|---|---|
+| [`data_abal.sh`](data_abal.sh) | Training-example fractions | Check each run's [recorded settings](analysis/raw/wandb/runs/) |
+| [`parameters_abal.sh`](parameters_abal.sh) | `tiny`, `small`, `medium`, `large`, `full` | 3 |
+| [`tracks_abal.sh`](tracks_abal.sh) | Supervised-track fractions | 2 |
 
-Set `CUDA_VISIBLE_DEVICES` to the same number of GPUs. Changing that environment variable alone does **not** change the launcher's four-process default. FASTA and repacked-HDF5 paths are constructed from `DATA_DIR`.
-
-The saved track experiments used **2 GPUs**, per-device batch 2, accumulation 8, global batch 32, 10,000 optimizer steps, 5,000 warmup steps, and validation/save every 500 steps. The saved parameter experiments used **3 GPUs**, per-device batch 2, accumulation 6, global batch 36, 8,889 steps, 4,445 warmup steps, and validation/save every 445 steps. These schedules are confirmed by the captured log headers in `results/run-settings/`.
-
-## Reproduce the experiments
-
-### Track scaling
-
-After setting `tracks_abal.sh` to two GPUs and your data path:
+After configuring the launchers:
 
 ```bash
-export CUDA_VISIBLE_DEVICES=0,1
-bash tracks_abal.sh
+# Dataset sweep: match visibility to the GPU count you configured.
+bash data_abal.sh
+
+# Parameter sweep, configured for three GPUs.
+CUDA_VISIBLE_DEVICES=0,1,2 bash parameters_abal.sh
+
+# Track sweep, configured for two GPUs.
+CUDA_VISIBLE_DEVICES=0,1 bash tracks_abal.sh
 ```
 
-Runs 100%, 1%, 10%, 3%, and 30% of tracks, with seed 42. The trunk and output-head sizes are unchanged; only the selected tracks contribute to loss and validation/test metrics. Each run saves `track_selection.json` with exact zero-based target indices. The full baseline is trained first.
+All parameter presets have one transformer block and 12 attention heads. Their transformer widths are 192, 384, 768, 1152, and 1536; convolutional widths scale too. `full` is the original custom baseline.
 
-The independent track-selection seed defaults to the training seed. To repeat only the 1% experiment with a different selection, keeping training seed 42:
+Track selection has a separate seed, defaulting to training seed 42. The selected indices are saved in `track_selection.json`, and subsets are nested for a fixed selection seed. For example:
 
 ```bash
+MODEL_SIZE=tiny bash parameters_abal.sh
 TRACK_PERCENT=1 bash tracks_abal.sh --track-seed 43
 ```
 
-Selections are nested within each species for a fixed track seed. For arbitrary counts, invoke `scripts/train_enformer.py` directly with `--human-track-count` and `--mouse-track-count`. Run names encode the training and track seeds. Completed sweeps are skipped using `.completed`; `FORCE=1` reruns them, so use a fresh output root when retaining previous results.
+Only selected tracks contribute to track-sweep loss and evaluation; the output-head sizes remain unchanged. Dataset sweeps retain all tracks and leave validation/test sets unchanged. Completed runs are skipped through `.completed` markers. Use a new output root to preserve earlier trials; `FORCE=1` reruns completed experiments.
 
-### Dataset scaling
+GPU count affects automatic gradient accumulation and schedule scaling. The archived track runs used global batch 32 and 10,000 steps; parameter runs used global batch 36 and 8,889 steps. Dataset runs used 10,000 steps, with different evaluation intervals for the full-data run. Consult [run settings](results/run-settings/) and the [W&B exports](analysis/raw/wandb/) when matching an experiment. Matching seeds alone does not guarantee bitwise reproduction across hardware or software versions.
 
-Configure `data_abal.sh` for your paths and GPU count, then:
+### Rerun the matched-track benchmark
 
-```bash
-bash data_abal.sh
-```
-
-Runs the same five percentages of training examples, retaining full track supervision. Training subsets are deterministic and nested for a fixed seed. Validation/test sets remain unchanged; these experiments retain the configured update budget rather than scaling it down with the training fraction. No dataset-scaling result artifacts were available in the copied server output; this repository provides the reproduction code without claiming measured results for that sweep.
-
-### Parameter scaling
-
-Configure `parameters_abal.sh` for three GPUs to match the included results:
-
-```bash
-export CUDA_VISIBLE_DEVICES=0,1,2
-bash parameters_abal.sh
-# Optional single preset:
-MODEL_SIZE=tiny bash parameters_abal.sh
-```
-
-Presets are `tiny`, `small`, `medium`, `large`, and `full`, with transformer widths 192, 384, 768, 1152, and 1536. All have exactly one transformer block and 12 attention heads; convolutional widths scale too. `full` is the original baseline, not a larger new model. Exact parameter counts and test metrics are preserved in each results directory.
-
-## Reproduce the paired track benchmark
-
-Train all five track runs first, or supply your own compatible checkpoints and manifests. Checkpoints are not distributed with this repository. The benchmark compares each focused model with the full model **on exactly the focused model's selected tracks**:
+Train the track models first; their checkpoints are not included. Then compare each focused model with the full model on the focused model's selected tracks:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 uv run python -m scripts.benchmark_track_ablation \
@@ -106,44 +165,18 @@ CUDA_VISIBLE_DEVICES=0 uv run python -m scripts.benchmark_track_ablation \
   --output-dir ./OUTPUTS/reproduced-track-comparison
 ```
 
-The output directory should be new. Default discovery uses seed-42 run names. For other trials, pass `--baseline OUTPUTS/<full-run>` and `--runs OUTPUTS/<focused-run> ...`. Use `--cache none` if RAM is limited. The archived run planned approximately 15.6 GiB of resident cache plus 0.65 GiB of loading scratch, excluding model/process overhead. Progress bars cover caching and inference.
+Use a new benchmark output directory. Default discovery uses the seed-42 run names. For other trials, pass `--baseline OUTPUTS/<full-run>` and `--runs OUTPUTS/<focused-run> ...`. Use `--cache none` if RAM is limited; the archived RAM cache used approximately 15.6 GiB plus loading scratch and model overhead.
 
-Each species' native test set is evaluated once per model: 1,937 human and 2,017 mouse examples, with no augmentation. Per-track Pearson pools examples and bins. Paired mean Pearson excludes tracks undefined for either model. Poisson loss omits the target-only factorial term. Positive Pearson deltas / negative Poisson deltas favor focused supervision. `final` means the run-root weights exported after validation-selected best weights were loaded, not necessarily the last optimization step. Test metrics never select checkpoints.
+The benchmark evaluates 1,937 human and 2,017 mouse native test examples without augmentation. Pearson is calculated per track across pooled examples and bins, then averaged over tracks with defined correlations in both models. Positive Pearson differences favor focused supervision. `--checkpoint final` loads run-root weights exported after the validation-selected best checkpoint was restored.
 
-## Included results
+### Long runs and resuming
 
-`results/track-comparison-20260919T202732.863735Z/` contains the original unmodified `summary.csv`, `summary.json`, `per_track.csv`, and `provenance.json`. Provenance embeds selection manifests and original weight paths, sizes and timestamps; weight hashing was disabled. Historical absolute paths are retained as provenance and do not need to exist on your machine. `--data-dir` overrides saved input paths when rerunning.
+Use `tmux new -s scaling` before starting a run over SSH. Detach with Ctrl+B, then D, and reconnect with `tmux attach -t scaling`.
 
-Mean selected-track Pearson (**focused / full**):
+Reusing an output directory does not automatically resume training. Resume explicitly with `--resume-from-checkpoint OUTPUTS/<run>/checkpoint-<step>`, preserving the original schedule. This historical training snapshot predates later recovery fixes; fresh runs are the supported path for reproducing the experiments.
 
-| Tracks | Human | Mouse |
-|---|---|---|
-| 1% | 0.619670 / 0.618029 | 0.659757 / 0.664492 |
-| 3% | 0.604273 / 0.604211 | 0.689113 / 0.681215 |
-| 10% | 0.626970 / 0.625954 | 0.710858 / 0.705554 |
-| 30% | 0.622344 / 0.622931 | 0.706207 / 0.705071 |
+## Repository provenance and license
 
-Differences are small and mixed in this single selection/training-seed trial. They do not establish that either focus or additional supervision is generally better. Repeat independent seeds before drawing a broad conclusion. Run-level track and parameter results also include architecture metadata, test summaries, and track selections under `results/basic-model-*`.
+The training source was reconstructed from pre-conservation backups and recorded server results. It preserves the custom architecture used for these scaling experiments and the executed RAM-cache benchmark. [`SNAPSHOT_SHA256SUMS`](SNAPSHOT_SHA256SUMS) records the original copied snapshot; later analysis and documentation additions are tracked in Git.
 
-## Checkpoints, resume, and long runs
-
-Training writes checkpoints and `latest`/`best` aliases under `OUTPUTS`. Resume requires `--resume-from-checkpoint OUTPUTS/<run>/checkpoint-<step>`; reusing an output directory alone does not resume. Keep the original schedule when resuming an interrupted experiment. Extending the step budget rebuilds the cosine schedule and can raise the learning rate; the later continuation override is intentionally absent from this historical snapshot. Historical metadata comparison can also reject JSON-normalized configurations on resume; the original implementation is retained rather than silently incorporating later fixes. Fresh runs are the supported reproduction path here.
-
-For SSH sessions, start `tmux new -s scaling`, run the experiment inside it, then press Ctrl+B followed by D to detach. Reconnect with `tmux attach -t scaling`. This survives SSH disconnects, not application errors or machine restarts.
-
-## Snapshot provenance and license
-
-The server did not contain usable Git history. This snapshot was reconstructed from locally saved pre-conservation backups and server benchmark artifacts. The original custom model comes from the parameter-scaling backup; it matches `modeling_custom_old.py` except for its standalone smoke-test entry point. The benchmark script matches the executed RAM-cache version byte-for-byte. Training/data wrappers and the lockfile come from the pre-conservation backup. No server source files or running jobs were modified to create this publication.
-
-`SNAPSHOT_SHA256SUMS` records the copied source and result contents. The original MIT license and copyright notice are retained in `LICENSE`. Dataset access and redistribution terms are separate from the source-code license.
-
-## Reproduce the blog's figures and tables
-
-All analysis code and the analyzed runs' scalar data are in [`analysis/`](analysis/README.md).
-They generate the scaling-law fits, extrapolation plots, Markdown tables,
-matched-track comparisons, transformer-depth learning curves (including RoPE at
-6,000 steps), and individual transformer-layer cosine plots without training or
-an API key. See the [analysis instructions](analysis/README.md) for the one-command
-generation workflow and source provenance. The completed
-[transformer usage notebook](Transformer_Usage_Analysis.ipynb) also contains its
-original measured results and inference code.
+Source code is distributed under the [MIT license](LICENSE). Dataset and official model-weight access terms are separate.

@@ -1,5 +1,7 @@
 # Reproduce the post's analyses
 
+For interactive run comparisons, download and open [`run-viewer.html`](../run-viewer.html). Rebuild it with `python3 analysis/build_viewer.py` after updating the allowlisted run exports. The HTML embeds its data and works offline.
+
 Run from the repository root. This analysis needs no GPUs, datasets, checkpoints,
 W&B account, or API key. The committed scalar measurements are sufficient.
 

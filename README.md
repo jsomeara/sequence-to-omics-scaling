@@ -8,6 +8,7 @@ The repository includes the measurements and code needed to regenerate the figur
 
 | Goal | Where to start |
 |---|---|
+| Browse runs interactively with smoothing and visibility controls | [Run data viewer](#interactive-run-data-viewer) |
 | Generate the figures, tables, and equations | [Offline analysis](#reproduce-the-figures-and-tables) |
 | Inspect the analyzed training runs | [Run index](analysis/raw/wandb/README.md) and [run manifest](analysis/run_manifest.json) |
 | Inspect the focused-versus-full track benchmark | [Benchmark results](results/track-comparison-20260919T202732.863735Z/) |
@@ -27,6 +28,29 @@ The repository includes the measurements and code needed to regenerate the figur
 The data and parameter experiments show diminishing gains across the tested scales. The track benchmark finds no consistent advantage for focused or full-track supervision. One transformer block reaches similar validation performance to eight blocks in the depth comparison.
 
 These are single-seed experiments. The scaling fits describe the recorded measurements; their asymptotes are extrapolations, not established performance ceilings. Transformer input-output cosine similarity measures representation changes, not whether a layer is necessary. [Analysis methods and provenance](analysis/README.md) explain the evaluations and their limits.
+
+## Interactive run data viewer
+
+Download [`run-viewer.html`](run-viewer.html) and open it in a modern browser. It is a standalone file with all 20 runs embedded: no server, installation, API key, or internet connection is needed. GitHub displays HTML as source, so use **Download raw file** and open the downloaded file locally.
+
+The viewer includes:
+
+- Show/hide controls for individual runs and experiment groups, run search, and custom colors.
+- Configurable metric charts for losses, Pearson scores, learning rates, gradients, and other logged scalars.
+- EMA and moving-average smoothing, an unsmoothed mode, and an optional raw-value overlay.
+- Optimizer-step, W&B-step, elapsed-time, and wall-clock axes; logarithmic axes and shared zoom.
+- Exact raw/smoothed values on hover, sortable metric summaries, and run-setting comparisons.
+- PNG chart downloads, full-resolution CSV exports for visible chart series, and raw JSON downloads for selected runs.
+
+Drag on a plot to zoom, scroll to adjust the range, or double-click to reset. Run selections and chart settings persist locally in your browser. CSV exports respect the selected X range and include smoothing settings. The viewer explains its smoothing definitions and handling of missing or repeated steps.
+
+To rebuild the HTML after refreshing the recorded run data:
+
+```bash
+python3 analysis/build_viewer.py
+```
+
+The builder uses only Python's standard library and the explicit [run manifest](analysis/run_manifest.json). Its editable source is [`analysis/viewer/template.html`](analysis/viewer/template.html). The viewer displays the training-run scalar histories; the separate paired track benchmark and official-model cosine results remain available through the offline analysis and notebook.
 
 ## Reproduce the figures and tables
 
